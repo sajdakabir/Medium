@@ -1,3 +1,4 @@
+import { CircularProgress, Grid } from "@material-ui/core";
 import React from "react";
 import {useSelector} from 'react-redux';
 import Post from './Post/Post';
@@ -12,11 +13,11 @@ const Posts=()=>{
 
 
     return(
-        <>
-        <h1>Posts</h1> 
-        <Post/>
-        <Post/>
-        </>
+        !posts.length ? <CircularProgress/> :(
+            <Grid>
+                
+            </Grid>
+        )
     )
 }
 
