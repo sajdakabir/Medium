@@ -35,3 +35,10 @@ export const updatePost = async (req, res) => {
 
     res.json(updatedPost);
 }
+
+export const deletePost=async(req,res)=>{
+    const {id}=req.params;
+    if(!mongoose.Types.ObjectId.isValid(id))return res.status(404).send(`no post with this id: ${id}`);
+    await PostMessage.findByIdAndRemove(id);
+    res.json({message:'post deleted successfully'});
+}
