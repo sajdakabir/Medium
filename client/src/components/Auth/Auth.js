@@ -7,21 +7,22 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { useDispatch } from 'react-redux';
 import { AUTH, LOGOUT } from '../../constants/actionTypes'
 import Input from './Input';
-import Icon from './icon';
+import{signup,signin} from '../../actions/auth';
 
-
+const initialState={ firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
 function Auth() {
     const classes = useStyle();
     const dispatch = useDispatch();
     const history = useHistory();
+    const [fromData,setFromData]=useState(initialState);
     const [showPassword, setShowPassword] = useState(false);
     const [isSignup, setIsSignUp] = useState(false);
 
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
 
-    const handleChange = () => {
-
+    const handleChange = (e) => {
+        setFromData({...fromData, [e.target.name]: e.target.value});
     };
 
     const switchMode = () => {
@@ -29,8 +30,14 @@ function Auth() {
         handleShowPassword(false);
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
+        if(isSignup){
+            dispatch(signup(fromData,history))
+        }else{
+            dispatch(signin(fromData,history));
+        }
     };
 
     const googleSuccess = async (res) => {
