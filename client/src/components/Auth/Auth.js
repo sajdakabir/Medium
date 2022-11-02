@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Avatar, Button, Container, Grid, Paper, Typography } from '@material-ui/core';
 import useStyle from './style';
 import { useHistory } from 'react-router-dom';
-import { GoogleLogin } from '@react-oauth/google';
+// import { GoogleLogin } from '@react-oauth/google';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { useDispatch } from 'react-redux';
-import { AUTH, LOGOUT } from '../../constants/actionTypes'
+// import { AUTH} from '../../constants/actionTypes'
 import Input from './Input';
 import{signup,signin} from '../../actions/auth';
 
@@ -41,23 +41,23 @@ function Auth() {
         }
     };
 
-    const googleSuccess = async (res) => {
-        const result = res?.profileObj;
-        const token = res.tokenId;
+    // const googleSuccess = async (res) => {
+    //     const result = res?.profileObj;
+    //     const token = res.tokenId;
 
-        try {
-            dispatch({ type: AUTH, data: { result, token } });
+    //     try {
+    //         dispatch({ type: AUTH, data: { result, token } });
 
-            history.push('/');
-        } catch (error) {
-            console.log(error);
-        }
-    };
+    //         history.push('/');
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
 
-    const googleError = (error) => {
-        console.log(error);
-        alert('Google Sign In was unsuccessful. Try again later');
-    }
+    // const googleError = (error) => {
+    //     console.log(error);
+    //     alert('Google Sign In was unsuccessful. Try again later');
+    // }
 
  
     return (
