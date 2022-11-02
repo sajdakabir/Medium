@@ -6,7 +6,8 @@ import UserModel from '../models/user.js'
 ;
 
 
-const secret = process.env.SECRET;
+// const secret = process.env.SECRET;
+const secret = 'gcyhdgbisudnsabyewcsha73ndue8b';
 
 
 export const signin=async(req,res)=>{
@@ -47,7 +48,7 @@ export const signup=async(req,res)=>{
         res.status(201).json({ result, token });
         
     } catch (error) {
-        es.status(500).json({ message: "Something went wrong" });
+        res.status(500).json({ message: "Something went wrong" });
     
     console.log(error);
     }

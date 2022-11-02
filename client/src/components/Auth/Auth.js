@@ -15,28 +15,29 @@ function Auth() {
     const classes = useStyle();
     const dispatch = useDispatch();
     const history = useHistory();
-    const [fromData,setFromData]=useState(initialState);
+    const [formData,setFormData]=useState(initialState);
     const [showPassword, setShowPassword] = useState(false);
     const [isSignup, setIsSignUp] = useState(false);
 
-    const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
+    const handleShowPassword = () => setShowPassword(!showPassword);
 
     const handleChange = (e) => {
-        setFromData({...fromData, [e.target.name]: e.target.value});
+        setFormData({...formData, [e.target.name]: e.target.value});
     };
 
     const switchMode = () => {
+        setFormData(initialState);
         setIsSignUp((prevIsSignup) => !prevIsSignup);
-        handleShowPassword(false);
+        setShowPassword(false);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         if(isSignup){
-            dispatch(signup(fromData,history))
+            dispatch(signup(formData,history))
         }else{
-            dispatch(signin(fromData,history));
+            dispatch(signin(formData,history));
         }
     };
 
